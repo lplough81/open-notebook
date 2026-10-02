@@ -1,0 +1,16 @@
+---
+title: Projects
+permalink: /projects/
+---
+<h1>Projects</h1>
+<p>Entries grouped by the <code>project:</code> field in each entry.</p>
+
+{% assign by_project = site.posts | where_exp: "p", "p.project" | group_by: "project" | sort: "name" %}
+{% for project in by_project %}
+<h2 id="{{ project.name | slugify }}">{{ project.name }} <small>({{ project.size }})</small></h2>
+<ul class="simple-list">
+  {% for post in project.items %}
+  <li><time>{{ post.date | date: "%Y-%m-%d" }}</time> <a href="{{ post.url | relative_url }}">{{ post.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endfor %}

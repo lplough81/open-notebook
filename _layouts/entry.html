@@ -1,0 +1,39 @@
+---
+layout: default
+---
+<article class="entry">
+  <header class="entry-header">
+    <p class="entry-date">{{ page.date | date: "%A, %B %-d, %Y" }}</p>
+    <h1>{{ page.title }}</h1>
+    <ul class="entry-meta">
+      {% if page.project %}
+      <li><span class="label">Project</span>
+        <a href="{{ '/projects/' | relative_url }}#{{ page.project | slugify }}">{{ page.project }}</a></li>
+      {% endif %}
+      {% if page.status %}
+      <li><span class="label">Status</span> <span class="status status-{{ page.status | slugify }}">{{ page.status }}</span></li>
+      {% endif %}
+      {% if page.tags.size > 0 %}
+      <li><span class="label">Tags</span>
+        {% for tag in page.tags %}<a class="tag" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% endfor %}</li>
+      {% endif %}
+    </ul>
+  </header>
+
+  <div class="entry-body">
+    {{ content }}
+  </div>
+
+  {% if site.repository != "" %}
+  <p class="entry-history">
+    This entry is version-controlled —
+    <a href="https://github.com/{{ site.repository }}/commits/main/{{ page.path }}">view its edit history</a>
+    or <a href="https://github.com/{{ site.repository }}/blob/main/{{ page.path }}">the raw source</a>.
+  </p>
+  {% endif %}
+
+  <nav class="entry-nav">
+    {% if page.previous %}<a href="{{ page.previous.url | relative_url }}">← {{ page.previous.title }}</a>{% else %}<span></span>{% endif %}
+    {% if page.next %}<a href="{{ page.next.url | relative_url }}">{{ page.next.title }} →</a>{% endif %}
+  </nav>
+</article>

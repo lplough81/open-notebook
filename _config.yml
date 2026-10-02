@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+#  Open Notebook — site settings
+#  Edit the values below, commit, and GitHub Pages rebuilds the site.
+# ---------------------------------------------------------------
+
+title: Open Notebook
+author: Louis Plough
+description: >-
+  An open lab notebook — daily research notes, methods, data and results,
+  published as I go.
+
+# If the repo is named <username>.github.io leave baseurl empty.
+# For a project repo (e.g. "open-notebook") set baseurl: "/open-notebook".
+baseurl: "/open-notebook"
+url: "https://lplough81.github.io"
+
+github_username: "lplough81"   # shown in the footer
+repository: "lplough81/open-notebook"  #"username/repo" — adds "view history" links to entries
+license: CC BY 4.0    # license for notebook content
+
+timezone: America/Los_Angeles
+markdown: kramdown
+kramdown:
+  input: GFM
+  math_engine: mathjax
+  syntax_highlighter: rouge
+
+permalink: /:year/:month/:day/:title/
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+defaults:
+  - scope: { path: "", type: posts }
+    values: { layout: entry }
+  - scope: { path: "" }
+    values: { layout: default }
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - _templates
+  - vendor
+  - .bundle
